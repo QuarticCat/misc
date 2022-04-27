@@ -1,5 +1,5 @@
 def quote(s):
-    """
+    r"""
     Add one level of quotes.
     E.g. r'\\' -> r'\\\\'
     """
@@ -7,7 +7,7 @@ def quote(s):
 
 
 def unquote(s):
-    """
+    r"""
     Remove one level of quotes.
     E.g. r'\\\\' -> r'\\'
     """
