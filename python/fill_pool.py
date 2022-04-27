@@ -16,34 +16,34 @@ from itertools import chain
 worker_num = 8
 big_task_num = 10
 
-start = Value('d', 0.0)
-table = [Array('c', b' ' * 40) for _ in range(worker_num)]
+start = Value("d", 0.0)
+table = [Array("c", b" " * 40) for _ in range(worker_num)]
 
 
 def measure(f):
     start.value = time.time()
     for r in table:
-        r.value = b'| ' * 20
+        r.value = b"| " * 20
     f()
-    print(f'##### {f.__name__}: {time.time() - start.value}s #####')
-    print('\n'.join(r.value.decode() for r in table))
+    print(f"##### {f.__name__}: {time.time() - start.value}s #####")
+    print("\n".join(r.value.decode() for r in table))
     print(flush=True)
 
 
 def write_table(msg):
-    proc_idx = int(current_process().name[len('ForkPoolWorker-'):]) - 1
+    proc_idx = int(current_process().name[len("ForkPoolWorker-") :]) - 1
     time_idx = int(time.time() - start.value) * 2 + 1
-    table[proc_idx][time_idx:time_idx + len(msg)] = msg
+    table[proc_idx][time_idx : time_idx + len(msg)] = msg
 
 
 def big_task(_):
-    write_table(b'b b b')
+    write_table(b"b b b")
     time.sleep(3)
     return range(3)
 
 
 def small_task(_):
-    write_table(b's')
+    write_table(b"s")
     time.sleep(1)
 
 
@@ -97,12 +97,7 @@ def test3():
     |b b b| | | |s|s|s| | | | | | | | | | |
     |b b b| | | |s|s|s|s| | | | | | | | | |
     """
-    p.map(
-        small_task,
-        chain.from_iterable(
-            p.imap(big_task, range(big_task_num))
-        )
-    )
+    p.map(small_task, chain.from_iterable(p.imap(big_task, range(big_task_num))))
 
 
 @measure
@@ -118,9 +113,4 @@ def test4():
     |b b b|s|s|s|s|s| | | | | | | | | | | |
     |b b b|s|s|s|s|s| | | | | | | | | | | |
     """
-    list(p.imap(
-        small_task,
-        chain.from_iterable(
-            p.imap(big_task, range(big_task_num))
-        )
-    ))
+    list(p.imap(small_task, chain.from_iterable(p.imap(big_task, range(big_task_num)))))
