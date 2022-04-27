@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cassert>
 
 /// Provide additional information to compiler.
