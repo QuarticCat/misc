@@ -2,6 +2,8 @@
 
 //! Provide additional information to compiler.
 //!
+//! Note that std::unreachable may be preferable since C++23.
+//!
 //! # Examples
 //!
 //! These two functions generate the same assembly.
