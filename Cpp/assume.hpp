@@ -2,8 +2,6 @@
 
 /// Provide additional information to compiler.
 ///
-/// Support GCC and Clang.
-///
 /// # Examples
 ///
 /// These two functions generate the same assembly.
@@ -19,6 +17,10 @@
 ///     return x / 2;
 /// }
 /// ```
+///
+/// # Compatibility
+///
+/// - GCC / Clang
 void assume(bool pred) {
     assert(pred);
 
