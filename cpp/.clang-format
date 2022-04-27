@@ -1,4 +1,4 @@
-# My currently prefered code style. Based on clang-format 10.
+# My currently favorite code style. Based on clang-format 10.
 
 Language: Cpp
 AccessModifierOffset: -2

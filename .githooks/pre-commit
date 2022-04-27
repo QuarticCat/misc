@@ -1,0 +1,37 @@
+#!/bin/python3
+
+import os
+import pathlib
+
+header = """\
+# Misc
+
+Some of my frequently copy-and-pasted code snippets. I hope they will also be helpful to you.
+
+## Install Git Hooks (For Myself)
+
+```console
+$ ./.githooks/install_hooks.sh
+```
+
+The hooks will automatically generate this README file before commit.
+
+## Table of Contents
+"""
+
+readme_parts = [header]
+
+for dir in sorted(pathlib.Path(".").iterdir()):
+    if not dir.is_dir() or dir.name.startswith("."):
+        continue
+
+    path = f"./{dir.name}"
+    readme_parts.append(f"- [{dir.name}]({path})")
+
+    for snippet in sorted(dir.iterdir()):
+        path = f"./{dir.name}/{snippet.name}"
+        description = snippet.open().readline().split(" ", 1)[1].rstrip()
+        readme_parts.append(f"  - [{snippet.name}]({path}): {description}")
+
+open("README.md", "w").write("\n".join(readme_parts))
+os.system("git add README.md")

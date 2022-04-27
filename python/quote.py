@@ -1,4 +1,4 @@
-# Provide functions `quote` and `unquote`.
+# Add / remove quotes (escapes).
 
 
 def quote(s):
