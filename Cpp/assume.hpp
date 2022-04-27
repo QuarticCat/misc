@@ -1,28 +1,29 @@
 #pragma once
 
+//! Provide additional information to compiler.
+//!
+//! # Examples
+//!
+//! These two functions generate the same assembly.
+//!
+//! ```
+//! int div2_optimized(int x) {
+//!     // round down, but x / 2 rounds toward 0
+//!     return x >> 1;
+//! }
+//!
+//! int div2_assume(int x) {
+//!     assume(x >= 0);
+//!     return x / 2;
+//! }
+//! ```
+//!
+//! # Compatibility
+//!
+//! - GCC / Clang
+
 #include <cassert>
 
-/// Provide additional information to compiler.
-///
-/// # Examples
-///
-/// These two functions generate the same assembly.
-///
-/// ```
-/// int div2_optimized(int x) {
-///     // round down, but x / 2 rounds toward 0
-///     return x >> 1;
-/// }
-///
-/// int div2_assume(int x) {
-///     assume(x >= 0);
-///     return x / 2;
-/// }
-/// ```
-///
-/// # Compatibility
-///
-/// - GCC / Clang
 void assume(bool pred) {
     assert(pred);
 

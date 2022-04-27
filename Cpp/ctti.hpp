@@ -1,5 +1,21 @@
 #pragma once
 
+//! Get the name / hash of the given type in compile-time.
+//!
+//! Ref: https://blog.quarticcat.com/posts/cpp-ctti/
+//!
+//! # Examples
+//!
+//! ```
+//! assert(type_name<int>() == "int");
+//! assert(type_hash<int>() != type_hash<char>());
+//! ```
+//!
+//! # Compatibility
+//!
+//! - GCC / Clang
+//! - C++17 or higher
+
 #include <string_view>
 
 namespace detail {
@@ -12,20 +28,6 @@ constexpr uint64_t fnv1a_hash(std::string_view str) {
 
 }  // namespace detail
 
-/// Return the name of the given type in compile-time.
-///
-/// Ref: https://blog.quarticcat.com/posts/cpp-ctti/
-///
-/// # Examples
-///
-/// ```
-/// assert(type_name<int>() == "int");
-/// ```
-///
-/// # Compatibility
-///
-/// - GCC / Clang
-/// - C++17 or higher
 template<typename T>
 constexpr std::string_view type_name() {
 #if defined(__clang__)
@@ -42,20 +44,6 @@ constexpr std::string_view type_name() {
     return name;
 }
 
-/// Return the hash of the given type in compile-time.
-///
-/// Ref: https://blog.quarticcat.com/posts/cpp-ctti/
-///
-/// # Examples
-///
-/// ```
-/// assert(type_hash<int>() != type_hash<char>());
-/// ```
-///
-/// # Compatibility
-///
-/// - GCC / Clang
-/// - C++17 or higher
 template<typename T>
 constexpr uint64_t type_hash() {
     auto name = type_name<T>();
