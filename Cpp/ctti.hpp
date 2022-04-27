@@ -1,5 +1,3 @@
-#pragma once
-
 //! Get the name / hash of the given type in compile-time.
 //!
 //! Ref: https://blog.quarticcat.com/posts/cpp-ctti/
@@ -15,6 +13,8 @@
 //!
 //! - GCC / Clang
 //! - C++17 or higher
+
+#pragma once
 
 #include <string_view>
 

@@ -1,4 +1,6 @@
-//! An example of how to simulate concept before C++20. It imitates the code below:
+//! An example of how to simulate concept before C++20.
+//!
+//! It imitates the code below:
 //!
 //! ```
 //! template<class T>

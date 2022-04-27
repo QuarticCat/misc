@@ -1,3 +1,5 @@
+# Provide functions `quote` and `unquote`.
+
 def quote(s):
     r"""
     Add one level of quotes.

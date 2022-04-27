@@ -1,8 +1,6 @@
-#pragma once
-
 //! Provide additional information to compiler.
 //!
-//! Note that std::unreachable may be preferable since C++23.
+//! Note that `std::unreachable` may be preferable since C++23.
 //!
 //! # Examples
 //!
@@ -23,6 +21,8 @@
 //! # Compatibility
 //!
 //! - GCC / Clang
+
+#pragma once
 
 #include <cassert>
 

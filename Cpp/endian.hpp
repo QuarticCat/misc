@@ -1,5 +1,3 @@
-#pragma once
-
 //! Some endian-ness utilities.
 //!
 //! Ref: https://github.com/QuarticCat/rusty-cpp
@@ -7,6 +5,8 @@
 //! # Compatibility
 //!
 //! - C++20 or higher
+
+#pragma once
 
 #include <array>
 #include <bit>

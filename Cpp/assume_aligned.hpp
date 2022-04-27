@@ -1,8 +1,6 @@
-#pragma once
-
-//! A C++ wrapper of __builtin_assume_aligned.
+//! A C++ wrapper of `__builtin_assume_aligned`.
 //!
-//! Note that std::assume_aligned is preferable since C++20.
+//! Note that `std::assume_aligned` is preferable since C++20.
 //!
 //! Ref: https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html
 //!
@@ -16,6 +14,8 @@
 //!
 //! - GCC / Clang
 //! - C++11 or higher
+
+#pragma once
 
 #include <cassert>
 #include <cstddef>
