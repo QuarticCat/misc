@@ -13,8 +13,7 @@ The hooks will automatically generate this README file before commit.
 ## Table of Contents
 
 - [cmake](./cmake)
-  - [fast_build.cmake](./cmake/fast_build.cmake): Some frequently used options to speed up the build process.
-  - [fast_build.sh](./cmake/fast_build.sh): Some frequently used command arguments to speed up the build process.
+  - [args.zsh](./cmake/args.zsh): Some frequently used cmake arguments.
 - [cpp](./cpp)
   - [.clang-format](./cpp/.clang-format): My currently favorite code style. Based on clang-format 10.
   - [assume.hpp](./cpp/assume.hpp): Provide additional information to compiler.
