@@ -1,4 +1,4 @@
-//! An example of how to add post processing into `serde::Deserialize`.
+//! An example of how to add post processing into `serde::Deserialize` with minimum code.
 
 use serde::{Deserialize, Deserializer};
 

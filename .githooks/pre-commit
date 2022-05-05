@@ -29,9 +29,15 @@ for dir in sorted(pathlib.Path(".").iterdir()):
     readme_parts.append(f"- [{dir.name}]({path})")
 
     for snippet in sorted(dir.iterdir()):
+        descr_parts = []
+        for line in snippet.open():
+            splited = line.split(" ", 1)
+            if len(splited) < 2:
+                break
+            descr_parts.append(splited[1].rstrip())
+
         path = f"./{dir.name}/{snippet.name}"
-        description = snippet.open().readline().split(" ", 1)[1].rstrip()
-        readme_parts.append(f"  - [{snippet.name}]({path}): {description}")
+        readme_parts.append(f"  - [{snippet.name}]({path}): {' '.join(descr_parts)}")
 
 open("README.md", "w").write("\n".join(readme_parts))
 os.system("git add README.md")
