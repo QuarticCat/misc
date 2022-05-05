@@ -1,4 +1,8 @@
-//! An example of how to add post processing into `serde::Deserialize` with minimum code.
+//! An example of how to add post processing into `serde::Deserialize` with
+//! minimum code.
+//!
+//! Key idea: To reuse the default deserialize behaviour, we use `remote`
+//! attribute to let it be generted in another namespace.
 
 use serde::{Deserialize, Deserializer};
 

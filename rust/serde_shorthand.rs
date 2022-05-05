@@ -1,5 +1,7 @@
-//! An example of how to add a shorthand for a struct in `serde`.
-//! Shorter and cleaner than https://serde.rs/string-or-struct.html.
+//! An example of how to add a shorthand for a struct in `serde`. Shorter and
+//! cleaner than https://serde.rs/string-or-struct.html.
+//!
+//! The idea is quite similar to `serde_post.rs`.
 
 use serde::{Deserialize, Deserializer};
 
