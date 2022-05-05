@@ -24,3 +24,5 @@ The hooks will automatically generate this README file before commit.
 - [python](./python)
   - [fill_pool.py](./python/fill_pool.py): An example of how to fill a multi-processing / multi-threading pool with dependent tasks.
   - [quote.py](./python/quote.py): Add / remove quotes (escapes).
+- [rust](./rust)
+  - [serde_post.rs](./rust/serde_post.rs): An example of how to add post processing into `serde::Deserialize`.
