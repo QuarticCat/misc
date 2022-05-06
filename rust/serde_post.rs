@@ -2,7 +2,7 @@
 //! minimum code.
 //!
 //! Key idea: To reuse the default deserialize behaviour, we use `remote`
-//! attribute to let it be generted in another namespace.
+//! attribute to let it be generated in another namespace.
 
 use serde::{Deserialize, Deserializer};
 
