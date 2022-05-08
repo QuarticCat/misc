@@ -12,7 +12,6 @@
 #include <bit>
 #include <concepts>
 #include <cstddef>
-#include <cstdint>
 #include <utility>
 
 namespace detail {
@@ -23,7 +22,7 @@ inline constexpr bool is_be = std::endian::native == std::endian::big;
 static_assert(is_le || is_be, "Mixed-endian is not supported!");
 
 template<size_t N>
-constexpr auto reverse_bytes(std::array<uint8_t, N> bytes) {
+constexpr auto reverse_bytes(std::array<std::byte, N> bytes) {
     // will be optimized to a single bswap instruction if possible
     return [=]<size_t... Is>(std::index_sequence<Is...>) {
         return std::array{bytes[N - 1 - Is]...};
@@ -35,7 +34,7 @@ constexpr auto reverse_bytes(std::array<uint8_t, N> bytes) {
 
 template<std::integral T>
 constexpr auto to_ne_bytes(T val) {
-    return std::bit_cast<std::array<uint8_t, sizeof(T)>>(val);
+    return std::bit_cast<std::array<std::byte, sizeof(T)>>(val);
 }
 
 template<std::integral T>
@@ -51,18 +50,18 @@ constexpr auto to_be_bytes(T val) {
 }
 
 template<std::integral T>
-constexpr T from_ne_bytes(std::array<uint8_t, sizeof(T)> val) {
+constexpr T from_ne_bytes(std::array<std::byte, sizeof(T)> val) {
     return std::bit_cast<T>(val);
 }
 
 template<std::integral T>
-constexpr T from_le_bytes(std::array<uint8_t, sizeof(T)> val) {
+constexpr T from_le_bytes(std::array<std::byte, sizeof(T)> val) {
     if constexpr (!detail::is_le) val = detail::reverse_bytes(val);
     return from_ne_bytes(val);
 }
 
 template<std::integral T>
-constexpr T from_be_bytes(std::array<uint8_t, sizeof(T)> val) {
+constexpr T from_be_bytes(std::array<std::byte, sizeof(T)> val) {
     if constexpr (!detail::is_be) val = detail::reverse_bytes(val);
     return from_ne_bytes(val);
 }
