@@ -31,16 +31,16 @@ constexpr uint64_t fnv1a_hash(std::string_view str) {
 template<typename T>
 constexpr std::string_view type_name() {
 #if defined(__clang__)
-    const char prefix[] = "std::string_view type_name() [T = ";
-    const char suffix[] = "]";
+    std::string_view prefix = "std::string_view type_name() [T = ";
+    std::string_view suffix = "]";
 #elif defined(__GNUC__)
-    const char prefix[] = "constexpr std::string_view type_name() [with T = ";
-    const char suffix[] = "; std::string_view = std::basic_string_view<char>]";
+    std::string_view prefix = "constexpr std::string_view type_name() [with T = ";
+    std::string_view suffix = "; std::string_view = std::basic_string_view<char>]";
 #endif
 
     std::string_view name = __PRETTY_FUNCTION__;
-    name.remove_prefix(sizeof(prefix) - 1);
-    name.remove_suffix(sizeof(suffix) - 1);
+    name.remove_prefix(prefix.size());
+    name.remove_suffix(suffix.size());
     return name;
 }
 
