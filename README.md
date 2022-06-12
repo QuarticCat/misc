@@ -24,6 +24,7 @@ The hooks will automatically generate this README file before commit.
   - [histogram.hpp](./cpp/histogram.hpp): C++ version of TurboHist, the fastest histogram construction.
   - [poor_mans_concept.cpp](./cpp/poor_mans_concept.cpp): An example of how to simulate concept before C++20.
   - [unroll.hpp](./cpp/unroll.hpp): Some unrolling utilities.
+  - [vec_ext.hpp](./cpp/vec_ext.hpp): Some vector extension utilities.
 - [python](./python)
   - [fill_pool.py](./python/fill_pool.py): An example of how to fill a multi-processing / multi-threading pool with dependent tasks.
   - [quote.py](./python/quote.py): Add / remove quotes (escapes).
