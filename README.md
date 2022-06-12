@@ -15,7 +15,6 @@ The hooks will automatically generate this README file before commit.
 - [cmake](./cmake)
   - [args.zsh](./cmake/args.zsh): Some frequently used cmake arguments.
 - [cpp](./cpp)
-  - [.clang-format](./cpp/.clang-format): My currently favorite code style. Based on clang-format 10.
   - [assume.hpp](./cpp/assume.hpp): Provide additional information to compiler.
   - [assume_aligned.hpp](./cpp/assume_aligned.hpp): A C++ wrapper of `__builtin_assume_aligned`.
   - [cache_padded.cpp](./cpp/cache_padded.cpp): An example showing that 128-byte alignment may outperform 64-byte alignment in some cases on Intel (but not on AMD).
