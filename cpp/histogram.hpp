@@ -11,7 +11,6 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <span>
 
 #define UNROLL _Pragma("unroll")
 
