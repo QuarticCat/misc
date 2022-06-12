@@ -21,6 +21,7 @@ The hooks will automatically generate this README file before commit.
   - [cache_padded.cpp](./cpp/cache_padded.cpp): An example showing that 128-byte alignment may outperform 64-byte alignment in some cases on Intel (but not on AMD).
   - [ctti.hpp](./cpp/ctti.hpp): Get the name / hash of the given type in compile-time.
   - [endian.hpp](./cpp/endian.hpp): Some endian-ness utilities.
+  - [histogram.hpp](./cpp/histogram.hpp): C++ version of TurboHist, the fastest histogram construction.
   - [poor_mans_concept.cpp](./cpp/poor_mans_concept.cpp): An example of how to simulate concept before C++20.
 - [python](./python)
   - [fill_pool.py](./python/fill_pool.py): An example of how to fill a multi-processing / multi-threading pool with dependent tasks.
