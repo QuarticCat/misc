@@ -12,7 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#define UNROLL _Pragma("unroll")
+#define QC_UNROLL _Pragma("GCC unroll")
 
 template<class Bin = uint32_t, size_t BufNum = 4>
 void histogram(uint8_t* __restrict__ data, size_t len, uint8_t* __restrict__ hist) {
@@ -20,20 +20,21 @@ void histogram(uint8_t* __restrict__ data, size_t len, uint8_t* __restrict__ his
 
     auto it = data;
     for (; it < data + len; it += 64) {
-        UNROLL for (size_t i = 0; i < 4; ++i) {
+        QC_UNROLL
+        for (size_t i = 0; i < 4; ++i) {
             auto x = ((uint64_t*)it)[i * 2];
             auto y = ((uint64_t*)it)[i * 2 + 1];
             if (x != y) [[likely]] {
-                UNROLL for (size_t j = 0; j < 8; ++j) {
+                QC_UNROLL
+                for (size_t j = 0; j < 8; ++j) {
                     ++hist_buf[j % BufNum][(x >> (j * 8)) & 0xFF];
                     ++hist_buf[j % BufNum][(y >> (j * 8)) & 0xFF];
                 }
             } else if ((x ^ (y << 8)) < (1 << 8)) {  // all bytes are equal
                 ++hist_buf[i][x & 0xff];
             } else {
-                UNROLL for (size_t j = 0; j < 8; ++j) {
-                    hist_buf[j % BufNum][(x >> (j * 8)) & 0xFF] += 2;
-                }
+                QC_UNROLL
+                for (size_t j = 0; j < 8; ++j) hist_buf[j % BufNum][(x >> (j * 8)) & 0xFF] += 2;
             }
         }
         __builtin_prefetch(it + 512);  // don't know why but it works
@@ -41,6 +42,7 @@ void histogram(uint8_t* __restrict__ data, size_t len, uint8_t* __restrict__ his
     for (; it != data + len; ++it) ++hist_buf[0][*it];
 
     for (size_t i = 0; i < 256; ++i) {
-        UNROLL for (size_t j = 0; j < BufNum; ++j) hist[i] += hist_buf[j][i];
+        QC_UNROLL
+        for (size_t j = 0; j < BufNum; ++j) hist[i] += hist_buf[j][i];
     }
 }
