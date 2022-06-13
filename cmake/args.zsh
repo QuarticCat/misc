@@ -11,6 +11,9 @@ args=(
     # Release build
     -DCMAKE_BUILD_TYPE=Release
 
+    # Generate compilation database
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
     # Use clang
     -DCMAKE_CXX_COMPILER='clang++'
 
