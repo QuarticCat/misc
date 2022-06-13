@@ -5,16 +5,12 @@
 #include <cstddef>
 #include <utility>
 
-/// A warkaround before `IndentPragma` is available in clang-format.
-///
 /// Remember to add this config to .clang-format:
 ///
 /// ```
 /// StatementMacros:
 ///   - QC_UNROLL
 /// ```
-///
-/// Note that Clang recognize `#pragma GCC unroll` but GCC doesn't recognize `#pragma unroll`.
 ///
 /// # Examples
 ///
@@ -26,7 +22,11 @@
 /// # Compatibility
 ///
 /// - GCC / Clang
-#define QC_UNROLL _Pragma("GCC unroll")
+#ifdef __clang__
+    #define QC_UNROLL _Pragma("unroll")
+#else
+    #define QC_UNROLL _Pragma("GCC ivdep")
+#endif
 
 /// Sometimes the loop variable is required to be constexpr so pragma unroll doesn't work.
 ///

@@ -12,7 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#define QC_UNROLL _Pragma("GCC unroll")
+#include "unroll.hpp"
 
 template<class Bin = uint32_t, size_t BufNum = 4>
 void histogram(uint8_t* __restrict__ data, size_t len, uint8_t* __restrict__ hist) {
