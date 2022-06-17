@@ -22,9 +22,9 @@
 /// # Compatibility
 ///
 /// - GCC / Clang
-#ifdef __clang__
+#if defined(__clang__)
     #define QC_UNROLL _Pragma("unroll")
-#else
+#elif defined(__GNUC__)
     #define QC_UNROLL _Pragma("GCC ivdep")
 #endif
 
@@ -58,7 +58,7 @@ void unroll(auto&& f) {
 /// # Examples
 ///
 /// ```
-/// expand<0, 32>([&]<auto... Is> { return std::array{a[Is]...}; });
+/// expand<32>([&]<auto... Is> { return std::array{a[Is]...}; });
 /// // or expand<0, 32>(...);
 /// // or expand<0, 32, 1>(...);
 /// ```
@@ -67,8 +67,8 @@ void unroll(auto&& f) {
 ///
 /// - C++20 or higher
 template<size_t Start, size_t End, size_t Step = 1>
-void expand(auto&& f) {
-    ([&]<size_t... Is>(std::index_sequence<Is...>) {
+auto expand(auto&& f) {
+    return ([&]<size_t... Is>(std::index_sequence<Is...>) {
         return f.template operator()<Is...>();
     }([]<size_t... Is>(std::index_sequence<Is...>) {
         return std::index_sequence<Start + Is * Step...>{};
@@ -76,6 +76,6 @@ void expand(auto&& f) {
 }
 
 template<size_t End>
-void expand(auto&& f) {
-    expand<0, End>(f);
+auto expand(auto&& f) {
+    return expand<0, End>(f);
 }
