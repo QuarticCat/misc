@@ -26,7 +26,7 @@
 
 #include <cassert>
 
-void assume(bool pred) {
+inline void assume(bool pred) {
     assert(pred);
 
 #if defined(__clang__)

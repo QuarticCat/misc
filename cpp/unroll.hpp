@@ -44,10 +44,8 @@
 template<size_t Start, size_t End, size_t Step = 1>
 void unroll(auto&& f) {
     ([&]<size_t... Is>(std::index_sequence<Is...>) {
-        (f.template operator()<Is>(), ...);
-    }([]<size_t... Is>(std::index_sequence<Is...>) {
-        return std::index_sequence<Start + Is * Step...>{};
-    }(std::make_index_sequence<(End - Start) / Step>{})));
+        (f.template operator()<Start + Is * Step>(), ...);
+    }(std::make_index_sequence<(End - Start) / Step>{}));
 }
 
 template<size_t End>
@@ -69,10 +67,8 @@ void unroll(auto&& f) {
 template<size_t Start, size_t End, size_t Step = 1>
 auto expand(auto&& f) {
     return ([&]<size_t... Is>(std::index_sequence<Is...>) {
-        return f.template operator()<Is...>();
-    }([]<size_t... Is>(std::index_sequence<Is...>) {
-        return std::index_sequence<Start + Is * Step...>{};
-    }(std::make_index_sequence<(End - Start) / Step>{})));
+        return f.template operator()<Start + Is * Step...>();
+    }(std::make_index_sequence<(End - Start) / Step>{}));
 }
 
 template<size_t End>
