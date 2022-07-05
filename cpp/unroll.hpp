@@ -25,6 +25,8 @@
 #if defined(__clang__)
     #define QC_UNROLL _Pragma("unroll")
 #elif defined(__GNUC__)
+    // This one actually doesn't mean mandatory unrolling.
+    // It only indicates that loops are independent.
     #define QC_UNROLL _Pragma("GCC ivdep")
 #endif
 
