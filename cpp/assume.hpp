@@ -1,6 +1,6 @@
 //! Provide additional information to compiler.
 //!
-//! Note that `std::unreachable` may be preferable since C++23.
+//! Note that `[[assume(expr)]]` may be preferable since C++23.
 //!
 //! # Examples
 //!
