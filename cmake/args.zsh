@@ -1,6 +1,7 @@
 # Some frequently used cmake arguments.
 #
-# Although I wrote a script here, I only use it by copy-and-pasting arguments listed below.
+# Although I wrote a script here, I only use it by copying and pasting
+# arguments listed below.
 #
 # Only consider Linux support.
 
@@ -26,6 +27,10 @@ args=(
     # Enable split dwarf
     -DCMAKE_CXX_FLAGS='-gsplit-dwarf'
     -DCMAKE_EXE_LINKER_FLAGS='-Wl,--gdb-index'
+
+    # Enable unity build
+    -DCMAKE_UNITY_BUILD=ON
+    -DCMAKE_UNITY_BUILD_BATCH_SIZE=5
 
     # Enable LTO
     -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON
