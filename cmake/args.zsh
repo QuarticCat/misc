@@ -16,23 +16,18 @@ args=(
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     # Use clang
+    -DCMAKE_C_COMPILER='clang'
     -DCMAKE_CXX_COMPILER='clang++'
 
     # Use ccache (or distcc, icecream)
-    -DCMAKE_CXX_COMPILER_LAUNCHER='ccache'
+    -DCMAKE_{C,CXX}_COMPILER_LAUNCHER='ccache'
 
     # Use lld (or mold)
-    -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld'
-    -DCMAKE_STATIC_LINKER_FLAGS='-fuse-ld=lld'
-    -DCMAKE_SHARED_LINKER_FLAGS='-fuse-ld=lld'
-    -DCMAKE_MODULE_LINKER_FLAGS='-fuse-ld=lld'
+    -DCMAKE_{EXE,STATIC,SHARED,MODULE}_LINKER_FLAGS='-fuse-ld=lld'
 
     # Enable split dwarf
-    -DCMAKE_CXX_FLAGS='-gsplit-dwarf'
-    -DCMAKE_EXE_LINKER_FLAGS='-Wl,--gdb-index'
-    -DCMAKE_STATIC_LINKER_FLAGS='-Wl,--gdb-index'
-    -DCMAKE_SHARED_LINKER_FLAGS='-Wl,--gdb-index'
-    -DCMAKE_MODULE_LINKER_FLAGS='-Wl,--gdb-index'
+    -DCMAKE_{C,CXX}_FLAGS='-gsplit-dwarf'
+    -DCMAKE_{EXE,STATIC,SHARED,MODULE}_LINKER_FLAGS='-Wl,--gdb-index'
 
     # Enable unity build
     -DCMAKE_UNITY_BUILD=ON
