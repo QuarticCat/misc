@@ -6,6 +6,9 @@
 # Only consider Linux support.
 
 args=(
+    # Build dir
+    -B=build
+
     # Use ninja
     -G=Ninja
 
@@ -18,6 +21,7 @@ args=(
     # Use clang
     -DCMAKE_C_COMPILER='clang'
     -DCMAKE_CXX_COMPILER='clang++'
+    -DCMAKE_CUDA_COMPILER='clang++'
 
     # Use ccache (or distcc, icecream)
     -DCMAKE_{C,CXX}_COMPILER_LAUNCHER='ccache'
