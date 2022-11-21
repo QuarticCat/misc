@@ -22,7 +22,7 @@ The hooks will automatically generate this README file before commit.
   - [endian.hpp](./cpp/endian.hpp): Some endian-ness utilities.
   - [histogram.hpp](./cpp/histogram.hpp): C++ version of TurboHist, the fastest histogram construction.
   - [poor_mans_concept.cpp](./cpp/poor_mans_concept.cpp): An example of how to simulate concept before C++20.
-  - [timer.hpp](./cpp/timer.hpp): A simple RAII timer.
+  - [timer.hpp](./cpp/timer.hpp): Some simple timer implementations.
   - [unroll.hpp](./cpp/unroll.hpp): Some unrolling utilities.
   - [vec_ext.hpp](./cpp/vec_ext.hpp): Some vector extension utilities.
 - [python](./python)

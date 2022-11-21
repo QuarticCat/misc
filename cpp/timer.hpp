@@ -1,4 +1,4 @@
-//! A simple RAII timer.
+//! Some simple timer implementations.
 
 #include <chrono>
 #include <iostream>
@@ -6,23 +6,31 @@
 namespace chrono = std::chrono;
 
 template<class Clock = chrono::system_clock, class Duration = chrono::duration<double, std::milli>>
-class Timer {
+class ScopeTimer {
     const char* title;
     chrono::time_point<Clock> start;
-    bool has_ended;
 
   public:
-    Timer(const char* title): title(title), start(Clock::now()), has_ended(false) {}
+    ScopeTimer(const char* title): title(title), start(Clock::now()) {}
 
-    /// Useful for measuring variable constructions.
-    void early_end() {
-        this->~Timer();
-        this->has_ended = true;
+    ~ScopeTimer() {
+        auto now = Clock::now();
+        auto duration = chrono::duration_cast<Duration>(now - this->start);
+        std::cerr << ">>>>> " << this->title << ": " << duration << std::endl;
     }
+};
 
-    ~Timer() {
-        if (this->has_ended) return;
-        auto duration = chrono::duration_cast<Duration>(Clock::now() - this->start);
-        std::cout << ">>>>> " << this->title << ": " << duration << std::endl;
+template<class Clock = chrono::system_clock, class Duration = chrono::duration<double, std::milli>>
+class TickTimer {
+    chrono::time_point<Clock> start;
+
+  public:
+    TickTimer(): start(Clock::now()) {}
+
+    void tick(const char* title) {
+        auto now = Clock::now();
+        auto duration = chrono::duration_cast<Duration>(now - this->start);
+        std::cerr << ">>>>> " << title << ": " << duration << std::endl;
+        this->start = now;
     }
 };
