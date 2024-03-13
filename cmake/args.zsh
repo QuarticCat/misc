@@ -27,7 +27,8 @@ args=(
     -DCMAKE_{C,CXX}_COMPILER_LAUNCHER='ccache'
 
     # Use lld (or mold)
-    -DCMAKE_{EXE,STATIC,SHARED,MODULE}_LINKER_FLAGS='-fuse-ld=lld'
+    -DCMAKE_LINKER_TYPE=LLD  # since 3.29
+    # -DCMAKE_{EXE,STATIC,SHARED,MODULE}_LINKER_FLAGS='-fuse-ld=lld'
 
     # Enable split dwarf
     -DCMAKE_{C,CXX}_FLAGS='-gsplit-dwarf'
